@@ -3,6 +3,8 @@ package starter.stepdef;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.reqres.ReqresAPI;
@@ -29,4 +31,5 @@ public class ListUsersSteps {
     public void responseBodyPageShouldBePage(int page) {
         SerenityRest.and().body(ReqresResponses.PAGE, equalTo(page));
     }
+
 }

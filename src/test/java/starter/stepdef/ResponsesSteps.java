@@ -1,10 +1,17 @@
 package starter.stepdef;
 
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.restassured.RestAssured;
+import io.restassured.config.LogConfig;
+import io.restassured.filter.log.LogDetail;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
+import org.hamcrest.core.IsEqual;
 import starter.reqres.ReqresAPI;
 import starter.reqres.ReqresResponses;
 import starter.utils.Constants;
@@ -16,6 +23,7 @@ import static org.hamcrest.Matchers.equalTo;
 public class ResponsesSteps {
     @Steps
     ReqresAPI reqresAPI;
+
 
     @Then("Status code should be {int}")
     public void statusCodeShouldBe(int statusCode) {
@@ -34,4 +42,16 @@ public class ResponsesSteps {
         File jsonFile = new File(Constants.JSON_SCHEMA + fileName);
         SerenityRest.and().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));   //buat validasi json schema
     }
+
+    @Given("Get list users with invalid parameter page {string}")
+    public void getListUsersWithInvalidParameterPage(String stringHalaman) {
+        reqresAPI.getListInvalidUsers(stringHalaman);
+    }
+
+    @And("Response body error should be {string}")
+    public void responseBodyErrorShouldBe(String error) {
+        SerenityRest.and().body(ReqresResponses.ERROR, IsEqual.equalTo(error));
+    }
+
+
 }
