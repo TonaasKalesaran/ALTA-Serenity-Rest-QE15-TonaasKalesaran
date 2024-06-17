@@ -11,6 +11,12 @@ Feature: Create User API
     |create_user1.json|Tonaas Kalesaran 1|QA Engineer 1|
     |create_user2.json|Tonaas Kalesaran 2|QA Engineer 2|
 
+  @Tugas
+    #negative test case
+  Scenario: Create new user with invalid name data type
+    Given Create new user with file json "invalid_name_boolean.json"
+    When Send request post create user
+    Then Status code should be 400
 
 #Feature: Create user API
 #  @Tugas

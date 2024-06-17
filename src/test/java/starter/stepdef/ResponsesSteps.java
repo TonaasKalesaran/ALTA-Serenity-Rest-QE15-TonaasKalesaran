@@ -53,5 +53,21 @@ public class ResponsesSteps {
         SerenityRest.and().body(ReqresResponses.ERROR, IsEqual.equalTo(error));
     }
 
+    @Given("Get list resource with invalid parameter page {string}")
+    public void getListResourceWithInvalidParameterPage(String stringHalaman) {
+        reqresAPI.getListInvalidResource(stringHalaman);
+    }
+
+    //list users and resource
+    @And("Response body page should be {int}")
+    public void responseBodyPageShouldBePage(int page) {
+        SerenityRest.and().body(ReqresResponses.PAGE, equalTo(page));
+    }
+
+    //single user and resource
+    @And("Response body id should be {int}")
+    public void responseBodyIdShouldBePage(int id) {
+        SerenityRest.and().body(ReqresResponses.ID_SINGLE, equalTo(id)); //ctrl+click ID_SINGLE
+    }
 
 }

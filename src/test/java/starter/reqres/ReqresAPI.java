@@ -18,6 +18,10 @@ public class ReqresAPI {
 
     public static String REGISTER_USER = Constants.BASE_URL + "/api/register";
 
+    public static String LIST_RESOURCE = Constants.BASE_URL + "/api/unknown?page={page}";    //si {page} mengarah ke pathParam line 12
+
+    public static String RESOURCE_WITH_ID = Constants.BASE_URL + "/api/unknown/{idResource}";
+
     @Step("Get list users")
     public void getListUsers(int halaman){
         SerenityRest.given()
@@ -34,6 +38,12 @@ public class ReqresAPI {
     public void getListInvalidUsers(String stringHalaman){
         SerenityRest.given()
                 .pathParam("page", stringHalaman);  // pathParam buat query parameter. yang warna putih referens ke public void
+    }
+
+    @Step("Get single invalid user")
+    public void getSingleInvalidUser(String stringId){
+        SerenityRest.given()
+                .pathParam("idUser", stringId);
     }
 
     @Step("Create new user")
@@ -71,4 +81,21 @@ public class ReqresAPI {
                 .pathParam("idUser", id);
     }
 
+    @Step("Get list resource")
+    public void getListResource(int halaman){
+        SerenityRest.given()
+                .pathParam("page", halaman);  // pathParam buat query parameter. yang warna putih referens ke public void
+    }
+
+    @Step("Get single resource")
+    public void getSingleResource(int idResource){
+        SerenityRest.given()
+                .pathParam("idResource", idResource);
+    }
+
+    @Step("Get list invalid resource")
+    public void getListInvalidResource(String stringHalaman){
+        SerenityRest.given()
+                .pathParam("page", stringHalaman);  // pathParam buat query parameter. yang warna putih referens ke public void
+    }
 }

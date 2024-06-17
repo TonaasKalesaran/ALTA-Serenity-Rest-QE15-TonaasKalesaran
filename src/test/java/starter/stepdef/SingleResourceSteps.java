@@ -7,23 +7,19 @@ import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import starter.reqres.ReqresAPI;
 import starter.reqres.ReqresResponses;
-import starter.utils.Constants;
-
-import java.io.File;
-
 import static org.hamcrest.Matchers.equalTo;
 
-public class SingleUserSteps {
+public class SingleResourceSteps {
     @Steps
     ReqresAPI reqresAPI;
 
-    @Given("Get single user with parameter {int}")
-    public void getSingleUserWithParameterId(int id) {
-        reqresAPI.getSingleUser(id);
+    @Given("Get single resource with parameter {int}")
+    public void getSingleResourceWithParameterId(int id) {
+        reqresAPI.getSingleResource(id);
     }
 
-    @When("Send request get single user")
-    public void sendRequestGetSingleUser() {
-        SerenityRest.when().get(ReqresAPI.USER_WITH_ID);
+    @When("Send request get single resource")
+    public void sendRequestGetSingleResource() {
+        SerenityRest.when().get(ReqresAPI.RESOURCE_WITH_ID);
     }
 }
